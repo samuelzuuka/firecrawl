@@ -37,8 +37,14 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path \
-    && chmod -R a+w $RUSTUP_HOME $CARGO_HOME
+COPY dockerenv/rustup-init.sh /app
+
+# RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path \
+#     && chmod -R a+w $RUSTUP_HOME $CARGO_HOME
+ENV RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+
+RUN sh ./rustup-init.sh -y --no-modify-path
+RUN chmod -R a+w $RUSTUP_HOME $CARGO_HOME
 
 # Copy source files
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json .npmrc ./
