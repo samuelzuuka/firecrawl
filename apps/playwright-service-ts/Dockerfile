@@ -2,6 +2,7 @@ FROM node:18-slim
 
 WORKDIR /usr/src/app
 COPY package*.json .npmrc ./
+RUN npm config set registry https://registry.npmmirror.com/
 RUN npm install
 
 COPY . .

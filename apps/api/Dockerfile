@@ -36,6 +36,8 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no
 
 # Copy source files
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json .npmrc ./
+RUN npm config set registry https://registry.npmmirror.com/
+RUN pnpm config set registry https://registry.npmmirror.com/
 COPY . .
 
 # Install dependencies
