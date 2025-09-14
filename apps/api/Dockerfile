@@ -21,6 +21,9 @@ RUN cd sharedLibs/go-html-to-md && \
 FROM base AS build
 WORKDIR /app
 
+RUN mv /etc/apt/sources.list.d/debian.sources /etc/apt/sources.list.d/debian.sources.bak
+COPY dockerenv/debian.sources /etc/apt/sources.list.d/debian.sources
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     curl \
