@@ -4,12 +4,13 @@ FROM node:22-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV CI=true
-ENV GOPROXY=https://mirrors.aliyun.com/goproxy/
 
 RUN corepack enable
 
 # Build Go shared library
 FROM golang:1.24 AS go-build
+ENV GOPROXY=https://mirrors.aliyun.com/goproxy/
+
 WORKDIR /app
 COPY sharedLibs/go-html-to-md ./sharedLibs/go-html-to-md
 
