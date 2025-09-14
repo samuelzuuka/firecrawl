@@ -59,6 +59,7 @@ const initializeBrowser = async () => {
       '--disable-gpu'
     ]
   });
+  logger.info('Browser initialized');
 };
 
 const createContext = async (skipTlsVerification: boolean = false) => {
@@ -253,12 +254,14 @@ app.post('/scrape', async (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
+  logger.info(`Server is running on port ${port}`);
   initializeBrowser().then(() => {
-    logger.info(`Server is running on port ${port}`);
+    logger.info(`Browser initialized`);
   });
 });
 
 process.on('SIGINT', () => {
+  logger.info('SIGINT signal received. Closing browser...');
   shutdownBrowser().then(() => {
     logger.info('Browser closed');
     process.exit(0);

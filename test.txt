@@ -29,3 +29,29 @@ curl --request POST \
   "storeInCache": true,
   "zeroDataRetention": false
 }'
+
+
+
+
+
+curl --request POST \
+  --url http://ngrok.samuelzuuka.com:15013/v2/scrape \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "url": "https://developer.huawei.com/consumer/cn/doc/",
+  "formats": [
+    "markdown"
+  ],
+  "onlyMainContent": true,
+  "maxAge": 172800000,
+  "headers": {},
+  "waitFor": 0,
+  "mobile": false,
+  "skipTlsVerification": true,
+  "timeout": 30000,
+  "removeBase64Images": true,
+  "blockAds": true,
+  "proxy": "auto",
+  "storeInCache": true,
+  "zeroDataRetention": false
+}'
