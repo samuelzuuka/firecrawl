@@ -95,7 +95,7 @@ services:
     networks:
       - backend
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - firecrawl_postgres_data:/var/lib/postgresql/data
     # ports:
     #   - "5432:5432"
 
@@ -104,4 +104,4 @@ networks:
     driver: bridge
 # 在文件底部添加卷定义
 volumes:
-  postgres_data:
+  firecrawl_postgres_data:
