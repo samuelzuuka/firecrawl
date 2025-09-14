@@ -16,7 +16,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "playwright": "^1.45.0",
-    "user-agents": "^1.1.410"
+    "user-agents": "^1.1.410",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",
