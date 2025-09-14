@@ -35,7 +35,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no
     && chmod -R a+w $RUSTUP_HOME $CARGO_HOME
 
 # Copy source files
-COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json .npmrc ./
 COPY . .
 
 # Install dependencies
