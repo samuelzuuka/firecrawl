@@ -105,8 +105,3 @@ networks:
 # 在文件底部添加卷定义
 volumes:
   postgres_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${POSTGRES_DATADIR:-./datadir/postgres_data}
-      o: bind
