@@ -94,6 +94,8 @@ services:
       POSTGRES_DB: postgres
     networks:
       - backend
+    volumes:
+      - ${POSTGRES_DATADIR:./datadir/postgres_data}:/var/lib/postgresql/data
     # ports:
     #   - "5432:5432"
 
