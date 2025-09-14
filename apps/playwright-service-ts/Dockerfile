@@ -9,6 +9,9 @@ COPY . .
 
 ENV PLAYWRIGHT_BROWSERS_PATH=/tmp/.cache
 
+RUN mv /etc/apt/sources.list.d/debian.sources /etc/apt/sources.list.d/debian.sources.bak
+COPY dockerenv/debian.sources /etc/apt/sources.list.d/debian.sources
+
 # Install Playwright dependencies
 RUN npx playwright install --with-deps
 
