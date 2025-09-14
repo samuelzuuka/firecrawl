@@ -11,6 +11,7 @@ ENV PLAYWRIGHT_BROWSERS_PATH=/tmp/.cache
 
 RUN mv /etc/apt/sources.list.d/debian.sources /etc/apt/sources.list.d/debian.sources.bak
 COPY dockerenv/debian.sources /etc/apt/sources.list.d/debian.sources
+RUN apt update
 RUN apt install apt-transport-https ca-certificates
 
 # Install Playwright dependencies
