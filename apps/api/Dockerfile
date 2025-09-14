@@ -4,6 +4,7 @@ FROM node:22-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV CI=true
+ENV GOPROXY=https://mirrors.aliyun.com/goproxy/
 
 RUN corepack enable
 
@@ -11,6 +12,7 @@ RUN corepack enable
 FROM golang:1.24 AS go-build
 WORKDIR /app
 COPY sharedLibs/go-html-to-md ./sharedLibs/go-html-to-md
+
 
 RUN cd sharedLibs/go-html-to-md && \
     go mod download && \
