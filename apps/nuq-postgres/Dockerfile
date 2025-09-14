@@ -3,6 +3,10 @@
 ARG PG_MAJOR=17
 FROM postgres:${PG_MAJOR}
 
+RUN mv /etc/apt/sources.list.d/debian.sources /etc/apt/sources.list.d/debian.sources.bak
+COPY dockerenv/debian.sources /etc/apt/sources.list.d/debian.sources
+
+
 # Install pg_cron for the specified Postgres major version
 RUN set -eux; \
     apt-get update; \
