@@ -332,10 +332,13 @@ const engineOptions: {
   },
   playwright: {
     features: {
-      actions: false,
+      // @改造firecrawl不支持的特性
+      actions: true,
       waitFor: true,
-      screenshot: false,
-      "screenshot@fullScreen": false,
+      // @改造firecrawl不支持的特性
+      screenshot: true,
+      // @改造firecrawl不支持的特性
+      "screenshot@fullScreen": true,
       pdf: false,
       docx: false,
       atsv: false,
@@ -462,6 +465,10 @@ export function buildFallbackList(meta: Meta): {
       : []),
   ];
 
+  meta.logger.debug("Fallback engines meta: " + JSON.stringify(meta));
+
+  meta.logger.debug("Fallback engines list - 1: " + _engines.join(", "));
+
   const shouldUseIndex =
     useIndex &&
     process.env.FIRECRAWL_INDEX_WRITE_ONLY !== "true" &&
@@ -486,6 +493,8 @@ export function buildFallbackList(meta: Meta): {
     }
   }
 
+  meta.logger.debug("Fallback engines list - 2: " + _engines.join(", "));
+
   const prioritySum = [...meta.featureFlags].reduce(
     (a, x) => a + featureFlagOptions[x].priority,
     0,
@@ -503,6 +512,10 @@ export function buildFallbackList(meta: Meta): {
         ? meta.internalOptions.forceEngine
         : [meta.internalOptions.forceEngine]
       : _engines;
+
+  meta.logger.debug(
+    "Fallback currentEngines engines list - 3: " + currentEngines.join(", "),
+  );
 
   for (const engine of currentEngines) {
     const supportedFlags = new Set([
