@@ -1,6 +1,6 @@
 import { BrowserContext, Route, Request as PlaywrightRequest } from 'playwright';
 import UserAgent from 'user-agents';
-import logger from '../../helpers/logger';
+import logger from './../helpers/logger';
 import { BrowserManager } from './BrowserManager';
 import { AD_SERVING_DOMAINS, DEFAULT_VIEWPORT } from '../config/constants';
 import { ProxyConfig } from '../types';

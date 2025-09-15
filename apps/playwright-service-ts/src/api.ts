@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import logger from '../helpers/logger';
+import logger from './helpers/logger';
 import { BrowserManager } from './services/BrowserManager';
 import { ScrapeService } from './services/ScrapeService';
-import { UrlModel } from './types';
+import { ScrapeRequetParam } from './types';
 
 dotenv.config();
 
@@ -37,7 +37,7 @@ app.get('/health', async (req: Request, res: Response) => {
 
 app.post('/scrape', async (req: Request, res: Response) => {
   try {
-    const params: UrlModel = req.body;
+    const params: ScrapeRequetParam = req.body;
     await browserManager.initialize();
     const result = await scrapeService.scrape(params);
     res.json(result);

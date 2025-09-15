@@ -1,9 +1,9 @@
 import { Page } from 'playwright';
-import logger from '../../helpers/logger';
-import { ScrapeResult, UrlModel } from '../types';
+import logger from './../helpers/logger';
+import { ScrapeResult, ScrapeRequetParam } from '../types';
 import { ContextManager } from './ContextManager';
 import { UrlValidator } from '../utils/UrlValidator';
-import { getError } from '../../helpers/get_error';
+import { getError } from './../helpers/get_error';
 
 export class ScrapeService {
   private readonly contextManager: ContextManager;
@@ -54,7 +54,7 @@ export class ScrapeService {
     };
   }
 
-  public async scrape(params: UrlModel): Promise<{
+  public async scrape(params: ScrapeRequetParam): Promise<{
     content: string;
     pageStatusCode: number | null;
     contentType?: string;

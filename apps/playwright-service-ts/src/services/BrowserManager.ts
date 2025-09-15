@@ -1,5 +1,5 @@
 import { Browser, chromium } from 'playwright';
-import logger from '../../helpers/logger';
+import logger from './../helpers/logger';
 import { BROWSER_LAUNCH_OPTIONS } from '../config/constants';
 
 export class BrowserManager {
