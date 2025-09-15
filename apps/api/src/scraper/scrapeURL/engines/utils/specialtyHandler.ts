@@ -1,6 +1,7 @@
 import { Logger } from "winston";
 import { AddFeatureError } from "../../error";
 import { FireEngineCheckStatusSuccess } from "../fire-engine/checkStatus";
+import { PlaywrightScrapeResponse } from "../playwright";
 import path from "path";
 import os from "os";
 import { writeFile } from "fs/promises";
@@ -8,7 +9,7 @@ import { Meta } from "../..";
 
 async function feResToPdfPrefetch(
   logger: Logger,
-  feRes: FireEngineCheckStatusSuccess | undefined,
+  feRes: FireEngineCheckStatusSuccess | PlaywrightScrapeResponse | undefined,
 ): Promise<Meta["pdfPrefetch"]> {
   if (!feRes?.file) {
     logger.warn("No file in pdf prefetch");
@@ -32,7 +33,7 @@ async function feResToPdfPrefetch(
 export async function specialtyScrapeCheck(
   logger: Logger,
   headers: Record<string, string> | undefined,
-  feRes?: FireEngineCheckStatusSuccess,
+  feRes?: FireEngineCheckStatusSuccess | PlaywrightScrapeResponse,
 ) {
   const contentType = (Object.entries(headers ?? {}).find(
     x => x[0].toLowerCase() === "content-type",
