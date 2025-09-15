@@ -6,6 +6,7 @@ import { getInnerJson } from "@mendable/firecrawl-rs";
 import { Logger } from "winston";
 import { MockState } from "../../lib/mock";
 import { specialtyScrapeCheck } from "../utils/specialtyHandler";
+import { Action } from "../../../../controllers/v1/types";
 
 // 请求类型定义
 type PlaywrightScrapeRequestCommon = {
@@ -22,6 +23,7 @@ type PlaywrightScrapeRequestCommon = {
   mobileProxy?: boolean;
   saveScrapeResultToGCS?: boolean;
   zeroDataRetention?: boolean;
+  actions?: Action[];
 };
 
 const successSchema = z.object({
@@ -191,6 +193,11 @@ export async function scrapeURLWithPlaywright(
       meta.internalOptions.saveScrapeResultToGCS,
     zeroDataRetention: meta.internalOptions.zeroDataRetention,
     priority: meta.internalOptions.priority,
+    ...(meta.options.actions && meta.options.actions.length > 0
+      ? {
+          actions: meta.options.actions,
+        }
+      : {}),
   };
 
   // 调用封装的请求函数
