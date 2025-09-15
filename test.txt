@@ -3,7 +3,7 @@ claude mcp add firecrawl -e FIRECRAWL_API_URL=http://ngrok.samuelzuuka.com:15013
 
 
 curl --request POST \
-  --url http://ngrok.samuelzuuka.com:15013/v2/scrape \
+  --url http://localhost:3002/v2/scrape \
   --header 'Content-Type: application/json' \
   --data '{
   "url": "https://developer.huawei.com/consumer/cn/doc/",
@@ -20,7 +20,7 @@ curl --request POST \
   "actions": [
     {
       "type": "wait",
-      "milliseconds": 5000
+      "milliseconds": 2000
     }
   ],
   "removeBase64Images": true,

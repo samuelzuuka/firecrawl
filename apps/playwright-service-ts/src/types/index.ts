@@ -5,7 +5,8 @@ export interface ScrapeRequetParam {
   wait_after_load?: number;
   timeout?: number;
   headers?: { [key: string]: string };
-  check_selector?: string;
+  // 改为actions实现
+  // check_selector?: string;
   skip_tls_verification?: boolean;
   geolocation?: { country?: string; languages?: string[] };
   priority?: number;

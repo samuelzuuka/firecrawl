@@ -175,6 +175,9 @@ async function performPlaywrightScrape(
 export async function scrapeURLWithPlaywright(
   meta: Meta,
 ): Promise<EngineScrapeResult> {
+  meta.logger.info(
+    `scrapeURLWithPlaywright: ${meta.url},actions=${JSON.stringify(meta.options.actions)}`,
+  );
   // 构建请求对象
   const request: PlaywrightScrapeRequestCommon = {
     url: meta.rewrittenUrl ?? meta.url,
